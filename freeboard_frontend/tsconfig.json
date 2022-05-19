@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "src/commons/libraries/utils.js", "src/components/units/board/detail/BoardDetail.queries.tsㅌ", "src/components/units/board/write/BoardWrite.style.js", "src/components/units/board/write/BoardWrite.queries.js", "src/components/units/board/write/BoardWrite.presenter.js", "src/components/units/board/write/BoardWrite.container.js", "src/components/units/board/list/BoardList.style.js", "src/components/units/board/list/BoardList.queries.js", "src/components/units/board/list/BoardList.presenter.js", "src/components/units/board/list/BoardList.container.js", "src/components/units/board/detail/BoardDetail.style.js", "src/components/units/board/detail/BoardDetail.queries.js", "src/components/units/board/detail/BoardDetail.presenter.js", "src/components/units/board/detail/BoardDetail.container.js", "pages/index.js", "pages/boards/write/index.js", "pages/boards/list/index.js"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
