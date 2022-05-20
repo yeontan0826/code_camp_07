@@ -16,7 +16,7 @@ export const TableBox = styled.div`
 
 `
 
-/***** Title Start *****/
+/** Title Start **/
 export const RowTitle = styled.div`
     display: flex;
     flex-direction: row;
@@ -47,7 +47,7 @@ export const ThTitle = styled.div`
     color: red;
     width: 100%;
 `
-/***** Title End *****/
+/** Title End **/
 
 export const Row = styled.div`
     display: flex;
