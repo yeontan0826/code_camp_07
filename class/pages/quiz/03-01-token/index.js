@@ -1,7 +1,7 @@
 export default function Token() {
 
     function createToken() {
-        let token = String(Math.floor(Math.random() * 1000000)).padStart(6,'0')
+        const token = String(Math.floor(Math.random() * 1000000)).padStart(6,'0')
         document.getElementById("token").innerText = token
     }
 

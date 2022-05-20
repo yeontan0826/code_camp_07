@@ -1,7 +1,7 @@
 export default function Increase() {
 
     function counter() {
-        let result = Number(document.getElementById("count").innerText) + 1
+        const result = Number(document.getElementById("count").innerText) + 1
         document.getElementById("count").innerText = result
     }
 

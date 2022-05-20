@@ -5,7 +5,7 @@ export default function Token() {
     const [token, setToken] = useState("000000")
 
     function createToken() {
-        let randomToken = String(Math.floor(Math.random() * 1000000)).padStart(6,'0')
+        const randomToken = String(Math.floor(Math.random() * 1000000)).padStart(6,'0')
         setToken(randomToken)
     }
 
