@@ -66,6 +66,7 @@ export const BoardCreatedAt = styled.span`
 export const FunctionImg = styled.img`
     width: 30px;
     margin-left: 12px;
+    cursor: pointer;
 `
 
 export const Main = styled.div`
@@ -112,7 +113,7 @@ export const LikeBox = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    color: #ffd600;
+    color: #A77EE9;
 `
 
 export const DisLikeBox = styled.div`
@@ -150,8 +151,8 @@ export const PageSettingsButton = styled.button`
     font-weight: 500;
     cursor: pointer;
     :hover {
-        border: 1px solid #FFD600;
-        color: #FFD600;
+        border: 1px solid #A77EE9;
+        color: #A77EE9;
     }
 `
 
@@ -227,12 +228,14 @@ export const CommentTextLength = styled.span`
     font-size: 16px;
 `
 
-export const CommentSubmitButton = styled.button`
+export const CommentWriteButton = styled.button`
     border: none;
     background-color: black;
     height: 100%;
     padding: 0 15px;
     color: white;
+    cursor: pointer;
+
 `
 
 export const CommentListBox = styled.div`

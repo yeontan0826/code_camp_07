@@ -107,19 +107,30 @@ const BoardWrite = (props) => {
     }
 
     const onClickUpdate = async () => {
+        if(!title && !contents) {
+            alert("수정한 내용이 없습니다.")
+            return
+        }
+
+        if(!password) {
+            alert("비밀번호를 입력해주세요")
+            return
+        }
+
+        const updateBoardInput = {}
+        if(title) updateBoardInput.title = title
+        if(contents) updateBoardInput.contents = contents
+
         try {
-            const result = await updateBoard({
+            await updateBoard({
                 variables: {
-                    updateBoardInput: {
-                        title,
-                        contents
-                    },
+                    updateBoardInput,
                     password,
                     boardId: router.query.page
                 }
             })
             alert("게시글이 수정되었습니다.")
-            router.push(`/boards/detail/${result.data.updateBoard._id}`)
+            router.push(`/boards/detail/${router.query.page}`)
         } catch(error) {
             console.error(`!!!!!!   에러발생   !!!!!!\n${error}`)
         }
@@ -137,7 +148,9 @@ const BoardWrite = (props) => {
             onClickUpdate={onClickUpdate}
             buttonEnabled={isActive}
             isEdit={props.isEdit}
-            isActive={isActive}
+            isActive={props.isEdit ? true : isActive}
+            // isActive={isActive}
+            data={props.data}
 
             writerError={writerError}
             passwordError={passwordError}

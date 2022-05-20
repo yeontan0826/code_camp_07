@@ -13,7 +13,7 @@ const BoardWriteUI = (props) => {
                         <S.InputRow>
                             <S.InputBox>
                                 <S.Label>작성자</S.Label>
-                                <S.Input type='text' placeholder='이름을 적어주세요.' onChange={props.onChangeWriter}/>
+                                <S.Input type='text' placeholder='이름을 적어주세요.' onChange={props.onChangeWriter} defaultValue={props.data?.fetchBoard.writer}/>
                                 <S.ErrorText>{props.writerError}</S.ErrorText>
                             </S.InputBox>
                             <S.InputBox>
@@ -24,12 +24,12 @@ const BoardWriteUI = (props) => {
                         </S.InputRow>
                         <S.InputColumn>
                             <S.Label>제목</S.Label>
-                            <S.Input type='text' placeholder='제목을 작성해주세요.' onChange={props.onChangeTitle}/>
+                            <S.Input type='text' placeholder='제목을 작성해주세요.' onChange={props.onChangeTitle} defaultValue={props.data?.fetchBoard.title}/>
                             <S.ErrorText>{props.titleError}</S.ErrorText>
                         </S.InputColumn>
                         <S.InputColumn>
                             <S.Label>내용</S.Label>
-                            <S.InputArea type='text' placeholder='내용을 작성해주세요.' onChange={props.onChangeContents}/>
+                            <S.InputArea type='text' placeholder='내용을 작성해주세요.' onChange={props.onChangeContents} defaultValue={props.data?.fetchBoard.contents}/>
                             <S.ErrorText>{props.contentsError}</S.ErrorText>
                         </S.InputColumn>
                         <S.InputColumn>
@@ -71,7 +71,7 @@ const BoardWriteUI = (props) => {
                                 <Radio name='main' checked={true}>사진</Radio>
                             </S.RadioBox>
                         </S.InputColumn>
-                        <S.SubmitButton isActive={props.isActive} disabled={!props.buttonEnabled} onClick={props.isEdit ? props.onClickUpdate : props.onClickWrite}>
+                        <S.SubmitButton isActive={props.isActive} onClick={props.isEdit ? props.onClickUpdate : props.onClickWrite}>
                             {props.isEdit ? "수정하기" : "등록하기"}
                         </S.SubmitButton>
                     </S.Main>

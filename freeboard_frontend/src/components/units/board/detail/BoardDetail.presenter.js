@@ -64,7 +64,7 @@ const BoardDetailUI = (props) => {
                         <S.CommentContentsArea placeholder='개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.'/>
                         <S.CommentSettingsBox>
                             <S.CommentTextLength>0/100</S.CommentTextLength>
-                            <S.CommentSubmitButton>등록하기</S.CommentSubmitButton>
+                            <S.CommentWriteButton>등록하기</S.CommentWriteButton>
                         </S.CommentSettingsBox>
                     </S.CommentContentsBox>
                     <S.CommentListBox>
@@ -76,9 +76,9 @@ const BoardDetailUI = (props) => {
                                 <S.CommentWriterStarBox>
                                     <S.CommentWriter>노원두</S.CommentWriter>
                                     <S.CommentStarBox>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
                                         <img src='../../image/detail/ic_star_gray.svg'/>
                                         <img src='../../image/detail/ic_star_gray.svg'/>
                                     </S.CommentStarBox>
@@ -99,9 +99,9 @@ const BoardDetailUI = (props) => {
                                 <S.CommentWriterStarBox>
                                     <S.CommentWriter>땅찌</S.CommentWriter>
                                     <S.CommentStarBox>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
                                         <img src='../../image/detail/ic_star_gray.svg'/>
                                         <img src='../../image/detail/ic_star_gray.svg'/>
                                     </S.CommentStarBox>
@@ -122,9 +122,9 @@ const BoardDetailUI = (props) => {
                                 <S.CommentWriterStarBox>
                                     <S.CommentWriter>안우엽</S.CommentWriter>
                                     <S.CommentStarBox>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
-                                        <img src='../../image/detail/ic_star_yellow.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
+                                        <img src='../../image/detail/ic_star_purple.svg'/>
                                         <img src='../../image/detail/ic_star_gray.svg'/>
                                         <img src='../../image/detail/ic_star_gray.svg'/>
                                     </S.CommentStarBox>
