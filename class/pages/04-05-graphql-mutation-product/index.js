@@ -23,11 +23,11 @@ export default function GraphqlMutationProduct(){
     const onClickSubmit = async () => {
         await createProduct({ 
             variables: { 
-                seller: seller,
+                seller,
                 createProductInput: {
-                    name: name,
-                    detail: detail,
-                    price: price
+                    name,
+                    detail,
+                    price
                 }
             } 
         })

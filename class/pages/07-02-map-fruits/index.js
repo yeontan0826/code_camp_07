@@ -17,11 +17,11 @@ export default function MapFruitsPage(){
 
     // const bbb = ["나의레드향", "나의샤인머스켓", "나의산청딸기"].map((el) => (<div>{el}</div>))
 
-    const ccc = FRUITS.map((el) => (<div>{el.number} {el.title}</div>))
+    const ccc = FRUITS.map((el) => <div>{el.number} {el.title}</div>)
 
     return (
-        <div>
+        <>
             {ccc}
-        </div>
+        </>
     )
 }

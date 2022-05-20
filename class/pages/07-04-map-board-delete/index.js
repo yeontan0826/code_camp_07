@@ -41,7 +41,7 @@ export default function MapBoardPage(){
     }
 
     return (
-        <div>
+        <>
             {data?.fetchBoards.map((el) => (
                     // <Fragment key={el.number}>
                     <Row key={el.number}>
@@ -54,7 +54,7 @@ export default function MapBoardPage(){
                         </Column>
                     </Row>
                 ))}
-        </div>
+        </>
     )
 
 }

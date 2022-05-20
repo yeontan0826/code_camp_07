@@ -25,7 +25,7 @@ export default function MapBoardPage(){
 
     return (
         <div>
-            {data?.fetchBoards.map(e => (
+            {data?.fetchBoards.map(el => (
                 <MyRow key={el.number}>
                     <MyColumn><input type="checkbox" /></MyColumn>
                     <MyColumn>{el.number}</MyColumn>
