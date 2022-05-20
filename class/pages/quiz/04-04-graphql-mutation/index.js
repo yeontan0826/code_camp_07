@@ -34,9 +34,9 @@ const GraphqlMutationPage = () => {
     const onClickGraphqlApi = async () => {
         const result = await callGraphql({
             variables: {
-                writer: writer,
-                title: title,
-                contents: contents
+                writer,
+                title,
+                contents
             }
         })
         console.log(result.data)

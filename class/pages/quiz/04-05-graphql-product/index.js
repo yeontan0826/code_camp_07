@@ -23,10 +23,10 @@ const GraphqlMutationProduct = () => {
     const onClickSubmit = async () => {
         const result = await createProduct({ 
             variables: { 
-                seller: seller,
+                seller,
                 createProductInput: {
-                    name: name,
-                    detail: detail,
+                    name,
+                    detail,
                     price: Number(price)
                 }
             } 
