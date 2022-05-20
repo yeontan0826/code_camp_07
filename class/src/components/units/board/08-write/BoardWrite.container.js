@@ -21,9 +21,9 @@ const BoardWrite = (props) => {
         // const result = await axios.get("https://koreanjson.com/posts/1")
         const result = await callGraphql({
             variables: {
-                writer: writer,
-                title: title,
-                contents: contents
+                writer,
+                title,
+                contents
             }
         })
 
