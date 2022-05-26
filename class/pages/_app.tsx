@@ -1,9 +1,9 @@
 import "antd/dist/antd.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { AppProps } from "next/app";
-import { Global } from "@emotion/react";
-import Layout from "../src/quiz/onetwothree/components/commons/layout";
-import { globalStyles } from "../src/quiz/onetwothree/commons/styles/globalStyles";
+// import { Global } from "@emotion/react";
+// import Layout from "../src/quiz/onetwothree/components/commons/layout";
+// import { globalStyles } from "../src/quiz/onetwothree/commons/styles/globalStyles";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const client = new ApolloClient({
