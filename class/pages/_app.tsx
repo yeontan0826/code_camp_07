@@ -14,10 +14,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         // 모든 페이지에서 사용할 수 있게끔 <ApolloProvider></ApolloProvider>로 컴포넌트를 감싼다
         <ApolloProvider client={client}>
-            <Global styles={globalStyles}/>
-            <Layout>
+            {/* <Global styles={globalStyles}/> */}
+            {/* <Layout> */}
                 <Component {...pageProps} />
-            </Layout>
+            {/* </Layout> */}
         </ApolloProvider>
     );
 }
