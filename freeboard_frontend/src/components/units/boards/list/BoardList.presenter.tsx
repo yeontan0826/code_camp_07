@@ -2,6 +2,7 @@ import * as S from "./BoardList.style";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
 import Pagination from "../../../commons/pagination/Pagination.contanier";
+import { EditFilled } from "@ant-design/icons";
 
 const BoardListUI = (props: IBoardListUIProps) => {
   return (
@@ -9,7 +10,7 @@ const BoardListUI = (props: IBoardListUIProps) => {
       <S.Container>
         <S.Box>
           <S.Button onClick={props.onClickMoveToWrite}>
-            <S.PencilIcon src="/image/list/ic_write.svg" />
+            <EditFilled />
             게시물 등록하기
           </S.Button>
           <S.TableTop />
