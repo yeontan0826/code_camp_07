@@ -19,8 +19,6 @@ export const Box = styled.div`
   padding: 50px 80px;
 `;
 
-export const PencilIcon = styled.img``;
-
 export const Button = styled.button`
   width: 150px;
   height: 45px;
