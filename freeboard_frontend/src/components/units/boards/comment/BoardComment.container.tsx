@@ -1,19 +1,14 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import BoardCommentUI from "./BoardComment.presenter";
-import {
-  CREATE_BOARD_COMMENT,
-  DELETE_BOARD_COMMENT,
-  FETCH_BOARD_COMMENTS,
-} from "./BoardCommentQueries";
+import { CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "./BoardComment.queries";
 
 const BoardComment = () => {
   const router = useRouter();
-
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
-  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
-  const { data } = useQuery(FETCH_BOARD_COMMENTS, {
+  const { data, fetchMore } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: {
       boardId: router.query.page,
     },
@@ -22,12 +17,7 @@ const BoardComment = () => {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
-
-  const [ratingNum, setRatingNum] = useState(0);
-
-  const onChangeRatingNum = (ratingNum: number) => {
-    setRatingNum(ratingNum);
-  };
+  const [rating, setRating] = useState(0);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -37,19 +27,23 @@ const BoardComment = () => {
     setPassword(event.target.value);
   };
 
-  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContents(event.target.value);
+  };
+
+  const onChangeRating = (ratingNum: number) => {
+    setRating(ratingNum);
   };
 
   const onClickCommentWrite = async () => {
     try {
-      const result = await createBoardComment({
+      await createBoardComment({
         variables: {
           createBoardCommentInput: {
             writer,
             password,
             contents,
-            rating: Number(1.0),
+            rating,
           },
           boardId: router.query.page,
         },
@@ -60,30 +54,30 @@ const BoardComment = () => {
           },
         ],
       });
-      console.log(result);
+      Modal.success({
+        content: "댓글 등록이 완료되었습니다.",
+      });
     } catch (error) {
-      console.error(`!!!!!!!!! 에러발생 !!!!!!!!!\n${error}`);
+      Modal.error({
+        title: "ERROR",
+        content: error,
+      });
     }
   };
 
-  const onClickCommentDelete = async (event: MouseEvent<HTMLImageElement>) => {
-    try {
-      const password = prompt("비밀번호를 입력해주세요");
-      await deleteBoardComment({
-        variables: {
-          password,
-          boardCommentId: event.target.id,
-        },
-        refetchQueries: [
-          {
-            query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.page },
-          },
-        ],
-      });
-    } catch (error) {
-      alert("비밀번호가 일치하지 않습니다.");
-    }
+  const loadMore = () => {
+    if (!data) return;
+    fetchMore({
+      variables: { page: Math.ceil(data?.fetchBoardComments.length / 10) + 1 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchBoardComments)
+          return { fetchBoardsComments: [...prev.fetchBoardComments] };
+
+        return {
+          fetchBoardComments: [...prev.fetchBoardComments, ...fetchMoreResult?.fetchBoardComments],
+        };
+      },
+    });
   };
 
   return (
@@ -93,9 +87,10 @@ const BoardComment = () => {
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
       onClickCommentWrite={onClickCommentWrite}
-      onClickCommentDelete={onClickCommentDelete}
-      onChangeRatingNum={onChangeRatingNum}
-      ratingNum={ratingNum}
+      onChangeRating={onChangeRating}
+      contents={contents}
+      rating={rating}
+      loadMore={loadMore}
     />
   );
 };

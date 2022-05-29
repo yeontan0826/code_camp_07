@@ -1,10 +1,11 @@
+import { Modal } from "antd";
 import * as S from "./BoardWrite.style";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
+import DaumPostcode from "react-daum-postcode";
 
 const BoardWriteUI = (props: IBoardWriteUIProps) => {
   return (
     <S.Wrapper>
-      <S.Header></S.Header>
       <S.Container>
         <S.Box>
           <S.Title>{props.isEdit ? "게시물 수정" : "게시물 등록"}</S.Title>
@@ -56,24 +57,39 @@ const BoardWriteUI = (props: IBoardWriteUIProps) => {
               <S.AddressBox>
                 <S.AddressInput
                   type="text"
-                  placeholder="07250"
-                  maxLength={5}
-                  onChange={props.onChangeAddress}
+                  placeholder="우편번호"
+                  defaultValue={
+                    props.isEdit ? props.data?.fetchBoard.boardAddress.zipcode : props.zipcode
+                  }
+                  onChange={props.onChangeZipcode}
+                  readOnly
                 />
-                <S.AddressFindButton>우편번호 검색</S.AddressFindButton>
+                <S.AddressFindButton onClick={props.postCodeModalToggle}>
+                  우편번호 검색
+                </S.AddressFindButton>
               </S.AddressBox>
-              <S.Input></S.Input>
-              <S.Input></S.Input>
+              <S.Input
+                defaultValue={
+                  props.isEdit ? props.data?.fetchBoard.boardAddress.address : props.address
+                }
+                readOnly
+              ></S.Input>
+              <S.Input
+                defaultValue={props.isEdit ? props.data?.fetchBoard.boardAddress.addressDetail : ""}
+                placeholder="상세주소"
+                onChange={props.onChangeAddressDetail}
+              ></S.Input>
               <S.ErrorText>{props.addressError}</S.ErrorText>
             </S.InputColumn>
             <S.InputColumn>
               <S.Label>유튜브</S.Label>
               <S.Input
+                defaultValue={props.isEdit ? props.data?.fetchBoard.youtubeUrl : ""}
                 type="text"
                 placeholder="링크를 복사해주세요."
-                onChange={props.onChangeYoutube}
+                onChange={props.onChangeYoutubeUrl}
               />
-              <S.ErrorText>{props.youtubeError}</S.ErrorText>
+              <S.ErrorText>{props.youtubeUrlError}</S.ErrorText>
             </S.InputColumn>
             <S.InputColumn>
               <S.Label>사진 첨부</S.Label>
@@ -95,14 +111,15 @@ const BoardWriteUI = (props: IBoardWriteUIProps) => {
             <S.InputColumn>
               <S.Label>메인 설정</S.Label>
               <S.RadioBox>
-                <input type={"radio"} name="main" id="youtube" />
+                <input type={"radio"} name="main" id="youtube" defaultChecked={true} />
                 유튜브
-                <input type={"radio"} name="main" id="photo" checked={true} />
+                <input type={"radio"} name="main" id="photo" />
                 사진
               </S.RadioBox>
             </S.InputColumn>
             <S.SubmitButton
-              isActive={props.isActive}
+              disabled={props.isEdit ? !props.isEditActive : !props.isWriteActive}
+              isActive={props.isEdit ? props.isEditActive : props.isWriteActive}
               onClick={props.isEdit ? props.onClickUpdate : props.onClickWrite}
             >
               {props.isEdit ? "수정하기" : "등록하기"}
@@ -110,6 +127,12 @@ const BoardWriteUI = (props: IBoardWriteUIProps) => {
           </S.Main>
         </S.Box>
       </S.Container>
+      {/* post code modal */}
+      {props.postCodeModalVisible && (
+        <Modal visible={true} onCancel={props.postCodeModalToggle}>
+          <DaumPostcode onComplete={props.handleComplete} />
+        </Modal>
+      )}
     </S.Wrapper>
   );
 };

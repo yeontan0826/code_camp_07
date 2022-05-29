@@ -5,14 +5,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Header = styled.div`
-  width: 100%;
-  height: 200px;
-  background-color: gray;
-  text-align: center;
-  font-weight: bold;
-`;
-
 export const Container = styled.div`
   margin: auto;
   padding: 50px 0;

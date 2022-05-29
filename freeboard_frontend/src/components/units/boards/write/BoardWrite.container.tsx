@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
@@ -11,28 +12,66 @@ const BoardWrite = (props: IBoardWriteProps) => {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const [isActive, setIsActive] = useState(false);
+  const [isWriteActive, setIsWriteActive] = useState(false);
+  const [isEditActive, setIsEditActive] = useState(false);
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
+  const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
-  const [youtube, setYoutube] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
   const [addressError, setAddressError] = useState("");
-  const [youtubeError, setYoutubeError] = useState("");
+  const [youtubeUrlError, setYoutubeUrlError] = useState("");
+
+  /* Daum Post Code Start */
+  const [postCodeModalVisible, setPostCodeModalVisible] = useState(false);
+
+  const postCodeModalToggle = () => {
+    setPostCodeModalVisible((prev) => !prev);
+  };
+
+  const handleComplete = (data: any) => {
+    setZipcode(data.zonecode);
+    setAddress(data.address);
+    postCodeModalToggle();
+  };
+  /* Daum Post Code End */
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
     if (event.target.value) {
       setWriterError("");
     }
-    setIsActive(event.target.value && password && title && contents !== "");
+    setIsWriteActive(
+      Boolean(
+        event.target.value &&
+          password &&
+          title &&
+          contents &&
+          zipcode &&
+          addressDetail &&
+          youtubeUrl
+      )
+    );
+    setIsEditActive(
+      Boolean(
+        event.target.value ||
+          password ||
+          title ||
+          contents ||
+          zipcode ||
+          addressDetail ||
+          youtubeUrl
+      )
+    );
   };
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +79,16 @@ const BoardWrite = (props: IBoardWriteProps) => {
     if (event.target.value) {
       setPasswordError("");
     }
-    setIsActive(writer && event.target.value && title && contents !== "");
+    setIsWriteActive(
+      Boolean(
+        writer && event.target.value && title && contents && zipcode && addressDetail && youtubeUrl
+      )
+    );
+    setIsEditActive(
+      Boolean(
+        writer || event.target.value || title || contents || zipcode || addressDetail || youtubeUrl
+      )
+    );
   };
 
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
@@ -48,45 +96,100 @@ const BoardWrite = (props: IBoardWriteProps) => {
     if (event.target.value) {
       setTitleError("");
     }
-    setIsActive(writer && password && event.target.value && contents !== "");
+    setIsWriteActive(
+      Boolean(
+        writer &&
+          password &&
+          event.target.value &&
+          contents &&
+          zipcode &&
+          addressDetail &&
+          youtubeUrl
+      )
+    );
+    setIsEditActive(
+      Boolean(
+        writer ||
+          password ||
+          event.target.value ||
+          contents ||
+          zipcode ||
+          addressDetail ||
+          youtubeUrl
+      )
+    );
   };
 
-  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContents(event.target.value);
     if (event.target.value) {
       setContentsError("");
     }
-    setIsActive(writer && password && title && event.target.value !== "");
+    setIsWriteActive(
+      Boolean(
+        writer && password && title && event.target.value && zipcode && addressDetail && youtubeUrl
+      )
+    );
+    setIsEditActive(
+      Boolean(
+        writer || password || title || event.target.value || zipcode || addressDetail || youtubeUrl
+      )
+    );
   };
 
-  const onChangeAddress = (event: ChangeEvent<HTMLInputElement>) => {
-    setAddress(event.target.value);
+  const onChangeZipcode = (event: ChangeEvent<HTMLInputElement>) => {
+    setZipcode(event.target.value);
     if (event.target.value) {
       setAddressError("");
     }
+    setIsWriteActive(
+      Boolean(
+        writer && password && title && contents && event.target.value && addressDetail && youtubeUrl
+      )
+    );
+    setIsEditActive(
+      Boolean(
+        writer || password || title || contents || event.target.value || addressDetail || youtubeUrl
+      )
+    );
   };
 
-  const onChangeYoutube = (event: ChangeEvent<HTMLInputElement>) => {
-    setYoutube(event.target.value);
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
     if (event.target.value) {
-      setYoutubeError("");
+      setAddressError("");
     }
+    setIsWriteActive(
+      Boolean(
+        writer && password && title && contents && zipcode && event.target.value && youtubeUrl
+      )
+    );
+    setIsEditActive(
+      Boolean(
+        writer || password || title || contents || zipcode || event.target.value || youtubeUrl
+      )
+    );
+  };
+
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutubeUrl(event.target.value);
+    if (event.target.value) {
+      setYoutubeUrlError("");
+    }
+    setIsWriteActive(
+      Boolean(
+        writer && password && title && contents && zipcode && addressDetail && event.target.value
+      )
+    );
+    setIsEditActive(
+      Boolean(
+        writer || password || title || contents || zipcode || addressDetail || event.target.value
+      )
+    );
   };
 
   const onClickWrite = async () => {
-    if (writer === "") setWriterError("작성자를 입력해주세요");
-    if (password === "") setPasswordError("비밀번호를 입력해주세요");
-    if (title === "") setTitleError("제목을 입력해주세요");
-    if (contents === "") setContentsError("내용을 입력해주세요");
-    if (youtube === "") setYoutube("링크를 입력해주세요");
-
-    if (
-      writer !== "" &&
-      password !== "" &&
-      title !== "" &&
-      contents !== "" &&
-      youtube !== ""
-    ) {
+    if (writer && password && title && contents && zipcode && addressDetail && youtubeUrl) {
       try {
         const result = await createBoard({
           variables: {
@@ -95,38 +198,53 @@ const BoardWrite = (props: IBoardWriteProps) => {
               password,
               title,
               contents,
-              youtubeUrl: youtube,
+              youtubeUrl,
               boardAddress: {
-                zipcode: "",
+                zipcode,
                 address,
-                addressDetail: "",
+                addressDetail,
               },
               images: "",
             },
           },
         });
-        alert("게시글이 등록되었습니다.");
-        router.push(`/boards/detail/${result.data.createBoard._id}`);
+        Modal.success({
+          title: "게시글 등록 완료",
+          content: "게시글 등록이 완료되었습니다.",
+          onOk() {
+            router.push(`/boards/detail/${result.data.createBoard._id}`);
+          },
+        });
       } catch (error) {
-        console.error(`!!!!!!   에러발생   !!!!!!\n${error}`);
+        Modal.error({
+          title: "비밀번호 오류",
+          content: "비밀번호가 일치하지 않습니다.",
+        });
       }
     }
   };
 
   const onClickUpdate = async () => {
-    if (!title && !contents) {
-      alert("수정한 내용이 없습니다.");
+    if (!title && !contents && !zipcode && !addressDetail && !youtubeUrl) {
+      Modal.warning({
+        content: "수정한 내용이 없습니다.",
+      });
       return;
     }
 
     if (!password) {
-      alert("비밀번호를 입력해주세요.");
+      Modal.error({
+        content: "비밀번호를 입력해주세요.",
+      });
       return;
     }
 
     const updateBoardInput: IUpdateBoardInput = {};
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
+    if (zipcode) updateBoardInput.zipecode = zipcode;
+    if (addressDetail) updateBoardInput.addressDetail = addressDetail;
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
 
     try {
       await updateBoard({
@@ -136,10 +254,17 @@ const BoardWrite = (props: IBoardWriteProps) => {
           boardId: router.query.page,
         },
       });
-      alert("게시글이 수정되었습니다.");
-      router.push(`/boards/detail/${router.query.page}`);
+      Modal.success({
+        content: "게시글 수정이 완료되었습니다.",
+        onOk() {
+          router.push(`/boards/detail/${router.query.page}`);
+        },
+      });
     } catch (error) {
-      alert("비밀번호가 일치하지 않습니다.");
+      Modal.error({
+        title: "비밀번호 불일치",
+        content: error,
+      });
     }
   };
 
@@ -149,19 +274,27 @@ const BoardWrite = (props: IBoardWriteProps) => {
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
-      onChangeAddress={onChangeAddress}
-      onChangeYoutube={onChangeYoutube}
+      onChangeZipcode={onChangeZipcode}
+      onChangeAddressDetail={onChangeAddressDetail}
+      onChangeYoutubeUrl={onChangeYoutubeUrl}
       onClickWrite={onClickWrite}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
-      isActive={props.isEdit ? true : isActive}
+      isWriteActive={isWriteActive}
+      isEditActive={isEditActive}
       data={props.data}
       writerError={writerError}
       passwordError={passwordError}
       titleError={titleError}
       contentsError={contentsError}
       addressError={addressError}
-      youtubeError={youtubeError}
+      youtubeUrlError={youtubeUrlError}
+      // Daum Post Code
+      postCodeModalToggle={postCodeModalToggle}
+      postCodeModalVisible={postCodeModalVisible}
+      handleComplete={handleComplete}
+      zipcode={zipcode}
+      address={address}
     />
   );
 };

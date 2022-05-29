@@ -1,12 +1,7 @@
 import BoardDetailUI from "./BoardDetail.presenter";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
-import {
-  FETCH_BOARD,
-  DELETE_BOARD,
-  LIKE_BOARD,
-  DISLIKE_BOARD,
-} from "./BoardDetail.queries";
+import { FETCH_BOARD, DELETE_BOARD, LIKE_BOARD, DISLIKE_BOARD } from "./BoardDetail.queries";
 
 const BoardDetail = () => {
   const router = useRouter();
@@ -16,11 +11,10 @@ const BoardDetail = () => {
       boardId: router.query.page,
     },
   });
+
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [likeBoard] = useMutation(LIKE_BOARD);
   const [dislikeBoard] = useMutation(DISLIKE_BOARD);
-
-  console.log(data);
 
   const onClickMoveToList = () => {
     router.push(`/boards/list`);

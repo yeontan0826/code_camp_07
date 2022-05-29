@@ -1,17 +1,8 @@
 import styled from "@emotion/styled";
-import { IStyleProps } from "./BoardWrite.types";
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const Header = styled.div`
-  width: 100%;
-  height: 200px;
-  background-color: gray;
-  text-align: center;
-  font-weight: bold;
 `;
 
 export const Container = styled.div`
@@ -75,7 +66,7 @@ export const Input = styled.input`
   margin-bottom: 10px;
 `;
 
-export const InputArea = styled.input`
+export const InputArea = styled.textarea`
   height: 200px;
   border: 1px solid #bdbdbd;
   padding: 0 10px;
@@ -140,10 +131,9 @@ export const RadioBox = styled.div`
 export const SubmitButton = styled.button`
   width: 150px;
   height: 45px;
-  background-color: gray;
   color: white;
   border: none;
   margin: auto;
-  cursor: ${(props: IStyleProps) => (props.isActive ? "pointer" : "default")};
-  background-color: ${(props) => (props.isActive ? "#FFD600" : "gray")};
+  background-color: ${(props: { isActive: boolean }) => (props.isActive ? "#ffd600" : "gray")};
+  cursor: ${(props: { isActive: boolean }) => (props.isActive ? "pointer" : "default")};
 `;

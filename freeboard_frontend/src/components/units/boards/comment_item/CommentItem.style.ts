@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 export const CommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1000px;
   margin-top: 40px;
 `;
 
@@ -46,7 +45,7 @@ export const CommentContentsBox = styled.div`
   border: 1px solid #bdbdbd;
 `;
 
-export const CommentContentsArea = styled.textarea`
+export const CommentContentsArea = styled.input`
   height: 100px;
   padding: 10px;
   font-size: 14px;

@@ -5,14 +5,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Header = styled.div`
-  width: 100%;
-  height: 200px;
-  background-color: gray;
-  text-align: center;
-  font-weight: bold;
-`;
-
 export const Container = styled.div`
   margin: auto;
   padding: 50px 0;
@@ -25,6 +17,27 @@ export const Box = styled.div`
   display: flex;
   flex-direction: column;
   padding: 50px 80px;
+`;
+
+export const PencilIcon = styled.img``;
+
+export const Button = styled.button`
+  width: 170px;
+  height: 50px;
+  border: none;
+  background-color: #a77ee9;
+  transition: 0.5s;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  justify-content: space-evenly;
+  align-items: center;
+  cursor: pointer;
+  :hover {
+    transition: 0.5s;
+    background-color: #653780;
+  }
 `;
 
 export const TableTop = styled.div`
@@ -100,32 +113,4 @@ export const columnWriter = styled.div`
 export const columnDate = styled.div`
   width: 15%;
   text-align: center;
-`;
-
-export const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 50px;
-`;
-
-export const PencilIcon = styled.img``;
-
-export const Button = styled.button`
-  width: 170px;
-  height: 50px;
-  border: none;
-  background-color: #a77ee9;
-  transition: 0.5s;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: row;
-  color: white;
-  justify-content: space-evenly;
-  align-items: center;
-  cursor: pointer;
-  :hover {
-    transition: 0.5s;
-    background-color: #653780;
-  }
 `;
