@@ -22,12 +22,12 @@ export const Box = styled.div`
 export const PencilIcon = styled.img``;
 
 export const Button = styled.button`
-  width: 170px;
-  height: 50px;
+  width: 150px;
+  height: 45px;
   border: none;
   background-color: #a77ee9;
   transition: 0.5s;
-  border-radius: 25px;
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
   color: white;
