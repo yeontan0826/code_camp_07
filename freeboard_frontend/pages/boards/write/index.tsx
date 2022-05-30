@@ -1,4 +1,4 @@
-import BoardWrite from "../../../src/components/units/boards/write/BoardWrite.container";
+import BoardWrite from "../../../src/components/units/board/write/BoardWrite.container";
 
 const BoardWritePage = () => {
   return <BoardWrite isEdit={false} />;
