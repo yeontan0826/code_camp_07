@@ -143,8 +143,10 @@ export const PageSettingsButton = styled.button`
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  transition: 0.5s;
   :hover {
     border: 1px solid #a77ee9;
     color: #a77ee9;
+    transition: 0.5s;
   }
 `;

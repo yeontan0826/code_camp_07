@@ -2,10 +2,10 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
-import BoardCommentUI from "./BoardComment.presenter";
-import { CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "./BoardComment.queries";
+import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
+import { CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "./BoardCommentWrite.queries";
 
-const BoardComment = () => {
+const BoardCommentWrite = () => {
   const router = useRouter();
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
   const { data, fetchMore } = useQuery(FETCH_BOARD_COMMENTS, {
@@ -81,7 +81,7 @@ const BoardComment = () => {
   };
 
   return (
-    <BoardCommentUI
+    <BoardCommentWriteUI
       data={data}
       onChangeWriter={onChangeWriter}
       onChangePassword={onChangePassword}
@@ -95,4 +95,4 @@ const BoardComment = () => {
   );
 };
 
-export default BoardComment;
+export default BoardCommentWrite;

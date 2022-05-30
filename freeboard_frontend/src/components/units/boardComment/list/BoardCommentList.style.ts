@@ -1,26 +1,8 @@
 import styled from "@emotion/styled";
 
-export const CommentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-`;
-
-export const CommentTitleBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-items: left;
-`;
-
-export const CommentTitle = styled.span`
-  font-size: 17px;
-  margin-left: 10px;
-`;
-
 export const CommentAccountBox = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 35px;
   align-items: center;
 `;
 
@@ -63,6 +45,7 @@ export const CommentSettingsBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
   height: 45px;
 `;
 
@@ -74,11 +57,16 @@ export const CommentTextLength = styled.span`
 
 export const CommentWriteButton = styled.button`
   border: none;
-  background-color: black;
+  background-color: #a77ee9;
   height: 100%;
   padding: 0 15px;
   color: white;
   cursor: pointer;
+  transition: 0.5s;
+  :hover {
+    transition: 0.5s;
+    background-color: #653780;
+  }
 `;
 
 export const CommentListBox = styled.div`

@@ -1,10 +1,10 @@
 import { Rate } from "antd";
-import * as S from "./BoardComment.style";
+import * as S from "./BoardCommentWrite.style";
+import { IBoardCommentWriteUIProps } from "./BoardCommentWrite.types";
+import BoardCommentList from "../list/BoardCommentList.container";
 import InfiniteScroll from "react-infinite-scroller";
-import { IBoardCommentUIProps } from "./BoardComment.types";
-import CommentItem from "../comment_item/CommentItem.container";
 
-const BoardCommentUI = (props: IBoardCommentUIProps) => {
+const BoardCommentWriteUI = (props: IBoardCommentWriteUIProps) => {
   return (
     <S.CommentWrapper>
       <S.CommentTitleBox>
@@ -36,7 +36,7 @@ const BoardCommentUI = (props: IBoardCommentUIProps) => {
       <S.CommentListBox>
         <InfiniteScroll pageStart={0} loadMore={props.loadMore} hasMore={true} useWindow={true}>
           {props.data?.fetchBoardComments.map((el: any) => (
-            <CommentItem key={el._id} el={el} />
+            <BoardCommentList key={el._id} el={el} />
           ))}
         </InfiniteScroll>
       </S.CommentListBox>
@@ -44,4 +44,4 @@ const BoardCommentUI = (props: IBoardCommentUIProps) => {
   );
 };
 
-export default BoardCommentUI;
+export default BoardCommentWriteUI;

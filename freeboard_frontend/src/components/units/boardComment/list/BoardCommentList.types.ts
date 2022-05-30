@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-export interface ICommentItemProps {
+export interface IBoardCommentListProps {
   el: any;
   deleteCommentModalVisible: boolean;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;

@@ -4,6 +4,7 @@ export const CommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 1000px;
+  margin: 0 auto;
   margin-top: 40px;
 `;
 
@@ -86,79 +87,4 @@ export const CommentListBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-`;
-
-export const CommentColumnBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #bdbdbd;
-`;
-
-export const CommentItemBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 20px 0;
-`;
-
-export const CommentProfileImgBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-`;
-
-export const CommentProfileImg = styled.img`
-  width: 45px;
-`;
-
-export const CommentInfoBox = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
-`;
-
-export const CommentWriterStarBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const CommentWriter = styled.span`
-  font-size: 18px;
-`;
-
-export const CommentStarBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-left: 20px;
-`;
-
-export const CommentReplyContent = styled.div`
-  margin-top: 8px;
-  font-size: 15px;
-`;
-
-export const CommentDate = styled.span`
-  color: #bdbdbd;
-  font-size: 14px;
-  margin-top: 16px;
-`;
-
-export const CommentReplySettingsBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-`;
-
-export const CommentReplaySettingsImg = styled.img`
-  width: 25px;
-  cursor: pointer;
-`;
-
-export const ModalInput = styled.input`
-  width: 200px;
-  height: 35px;
-  padding-left: 10px;
-  outline: none;
-  border: 1px solid #eeeeee;
 `;

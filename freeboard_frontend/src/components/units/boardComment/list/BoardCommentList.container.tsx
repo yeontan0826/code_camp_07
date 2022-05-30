@@ -2,15 +2,15 @@ import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
-import CommentItemUI from "./CommentItem.presenter";
+import BoardCommentListUI from "./BoardCommentList.presenter";
 import {
   DELETE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
   UPDATE_BOARD_COMMENT,
-} from "./CommentItem.queries";
-import { IUpdateBoardCommentInput } from "./CommentItem.types";
+} from "./BoardCommentList.queries";
+import { IUpdateBoardCommentInput } from "./BoardCommentList.types";
 
-const CommentItem = (props: { el: any }) => {
+const BoardCommentList = (props: { el: any }) => {
   const router = useRouter();
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
@@ -98,6 +98,13 @@ const CommentItem = (props: { el: any }) => {
       return;
     }
 
+    if (!rating && !contents) {
+      Modal.error({
+        content: "변경된 내용이 없습니다.",
+      });
+      return;
+    }
+
     const updateBoardCommentInput: IUpdateBoardCommentInput = {};
     if (rating) updateBoardCommentInput.rating = rating;
     if (contents) updateBoardCommentInput.contents = contents;
@@ -110,6 +117,10 @@ const CommentItem = (props: { el: any }) => {
           boardCommentId: props.el._id,
         },
       });
+      onChangeVisible();
+      Modal.success({
+        content: "댓글을 수정했습니다.",
+      });
     } catch (error) {
       Modal.error({
         title: "비밀번호 불일치",
@@ -119,7 +130,7 @@ const CommentItem = (props: { el: any }) => {
   };
 
   return (
-    <CommentItemUI
+    <BoardCommentListUI
       el={props.el}
       deleteCommentModalVisible={deleteCommentModalVisible}
       onChangePassword={onChangePassword}
@@ -138,4 +149,4 @@ const CommentItem = (props: { el: any }) => {
   );
 };
 
-export default CommentItem;
+export default BoardCommentList;

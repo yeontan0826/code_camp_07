@@ -1,9 +1,9 @@
 import { Modal, Rate } from "antd";
 import { getDate } from "../../../../commons/libraries/utils";
-import * as S from "./CommentItem.style";
-import { ICommentItemProps } from "./CommentItem.types";
+import * as S from "./BoardCommentList.style";
+import { IBoardCommentListProps } from "./BoardCommentList.types";
 
-const CommentItemUI = (props: ICommentItemProps) => {
+const BoardCommentListUI = (props: IBoardCommentListProps) => {
   return (
     <S.CommentColumnBox>
       <S.CommentItemBox>
@@ -33,9 +33,13 @@ const CommentItemUI = (props: ICommentItemProps) => {
         </S.CommentReplySettingsBox>
       </S.CommentItemBox>
       {props.isVisible === true && (
-        <div style={{ backgroundColor: "gray" }}>
+        <div style={{ backgroundColor: "#fdfaff", padding: "15px" }}>
           <S.CommentAccountBox>
-            <S.CommentAccountInput placeholder="작성자" defaultValue={props.el.writer} readOnly />
+            <S.CommentAccountInput
+              placeholder="작성자"
+              defaultValue={props.el?.writer || ""}
+              readOnly={!!props.el?.writer}
+            />
             <S.CommentAccountInput
               type={"password"}
               placeholder="비밀번호"
@@ -52,7 +56,7 @@ const CommentItemUI = (props: ICommentItemProps) => {
           <S.CommentContentsBox>
             <S.CommentContentsArea
               maxLength={100}
-              defaultValue={props.el.contents}
+              defaultValue={props.el?.contents}
               onChange={props.onChangeContents}
               placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
             />
@@ -83,4 +87,4 @@ const CommentItemUI = (props: ICommentItemProps) => {
   );
 };
 
-export default CommentItemUI;
+export default BoardCommentListUI;

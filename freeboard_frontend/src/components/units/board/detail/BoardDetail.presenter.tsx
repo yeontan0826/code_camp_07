@@ -1,6 +1,6 @@
 import ReactPlayer from "react-player";
 import { getDate } from "../../../../commons/libraries/utils";
-import BoardComment from "../comment/BoardComment.container";
+import BoardCommentWrite from "../../boardComment/write/BoardCommentWrite.container";
 import * as S from "./BoardDetail.style";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
 
@@ -60,7 +60,6 @@ const BoardDetailUI = (props: IBoardDetailUIProps) => {
           </S.PageSettingsButton>
           <S.PageSettingsButton onClick={props.onClickDelete}>삭제하기</S.PageSettingsButton>
         </S.PageSettingsBox>
-        <BoardComment />
       </S.Container>
     </S.Wrapper>
   );
