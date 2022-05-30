@@ -5,7 +5,7 @@ export const PaginationWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 40px;
 `;
 
 export const pageArrow = styled.span`
