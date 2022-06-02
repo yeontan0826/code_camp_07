@@ -12,7 +12,7 @@ const BoardWrite = (props) => {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
-  const [data, setData] = useState("");
+  const [data, setData] = useState({});
   const [callGraphql] = useMutation(CREATE_BOARD); // 등록하기
   const [updateBoard] = useMutation(UPDATE_BOARD); // 수정하기
 
@@ -26,21 +26,23 @@ const BoardWrite = (props) => {
       },
     });
 
-    console.log(result);
     setData(result.data.createBoard.message);
-    router.push(`/08-05-boards/${result.data.createBoard.number}`);
+    router.push(`/10-01-typescript-boards/${result.data.createBoard.number}`);
   };
 
   const onClickUpdate = async () => {
+    const myVariables = {
+      number: Number(router.query.number),
+    };
+
+    if (writer) myVariables.writer = writer;
+    if (title) myVariables.title = title;
+    if (contents) myVariables.contents = contents;
+
     const result = await updateBoard({
-      variables: {
-        number: Number(router.query.number),
-        writer,
-        title,
-        contents,
-      },
+      variables: myVariables,
     });
-    router.push(`/08-05-boards/${result.data.updateBoard.number}`);
+    router.push(`/10-01-typescript-boards/${result.data.updateBoard.number}`);
     // router.push(`/08-05-boards/${router.query.number}`) => 이것도 가능!!
   };
 
@@ -64,6 +66,7 @@ const BoardWrite = (props) => {
       onClickGraphqlApi={onClickGraphqlApi}
       onClickUpdate={onClickUpdate}
       data={data}
+      boardData={props.boardData}
       isEdit={props.isEdit}
     />
   );

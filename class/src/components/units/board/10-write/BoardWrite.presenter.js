@@ -7,6 +7,7 @@ const BoardWriteUI = (props) => {
       <h1>{props.isEdit ? "수정" : "등록"} 페이지</h1>
       작성자:{" "}
       <S.WriteInput
+        backgroundColor={"blue"}
         type={"text"}
         placeholder={"작성자"}
         onChange={props.onChangeWriter}
