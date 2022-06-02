@@ -45,7 +45,7 @@ export default function ImageUploadPage() {
     <div>
       <h1>이미지 업로드 연습하기</h1>
       {/* multiple 적용시 여러개 파일 한번에 업로드 */}
-      <div style={{ width: "50px", height: "50px", backgroundColor: "gray", cursor: "pointer" }} onClick={onClickImage}>
+      <div onClick={onClickImage} style={{ width: "50px", height: "50px", backgroundColor: "gray", cursor: "pointer" }}>
         이미지 선택
       </div>
       <input style={{ display: "none" }} type="file" ref={fileRef} onChange={onChangeFile} />

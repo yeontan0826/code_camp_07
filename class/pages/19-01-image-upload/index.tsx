@@ -28,6 +28,7 @@ export default function ImageUploadPage() {
         },
       });
 
+      console.log(result);
       // 2. 요청 결과 URL을 state애 저장하기
       setImageUrl(result.data.uploadFile.url);
     } catch (error) {
