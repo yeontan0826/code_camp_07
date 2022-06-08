@@ -1,11 +1,11 @@
 import "antd/dist/antd.css";
-import { ApolloClient, ApolloProvider, ApolloLink, InMemoryCache } from "@apollo/client";
-import { createUploadLink } from "apollo-upload-client";
+// import { ApolloProvider } from "@apollo/client";
 import { AppProps } from "next/app";
 import { initializeApp } from "firebase/app";
-// import { RecoilRoot } from "recoil";
-import { useState } from "react";
-import { GlobalContext } from "../src/quiz/21-02-recoil/commons/store";
+import { RecoilRoot } from "recoil";
+import ApolloSetting from "../src/components/commons/apollo";
+// import { useState } from "react";
+// import { GlobalContext } from "../src/quiz/21-02-recoil/commons/store";
 // import { Global } from "@emotion/react";
 // import Layout from "../src/quiz/onetwothree/components/commons/layout";
 // import { globalStyles } from "../src/quiz/onetwothree/commons/styles/globalStyles";
@@ -24,18 +24,17 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const [isEdit, setIsEdit] = useState(false);
-
-	const uploadLink = createUploadLink({
-		uri: "http://backend07.codebootcamp.co.kr/graphql",
-	});
-
-	const client = new ApolloClient({
-		link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
-		cache: new InMemoryCache(),
-	});
-
 	return (
+		<RecoilRoot>
+			{/* // 모든 페이지에서 사용할 수 있게끔 <ApolloProvider></ApolloProvider>로 컴포넌트를 감싼다. */}
+			<ApolloSetting>
+				{/* <Global styles={globalStyles}/> */}
+				{/* <Layout> */}
+				<Component {...pageProps} />
+				{/* </Layout> */}
+			</ApolloSetting>
+		</RecoilRoot>
+
 		// <RecoilRoot>
 		// 	{/* // 모든 페이지에서 사용할 수 있게끔 <ApolloProvider></ApolloProvider>로 컴포넌트를 감싼다. */}
 		// 	<ApolloProvider client={client}>
@@ -45,15 +44,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 		// 		{/* </Layout> */}
 		// 	</ApolloProvider>
 		// </RecoilRoot>
-		<GlobalContext.Provider value={{ isEdit, setIsEdit }}>
-			{/* // 모든 페이지에서 사용할 수 있게끔 <ApolloProvider></ApolloProvider>로 컴포넌트를 감싼다. */}
-			<ApolloProvider client={client}>
-				{/* <Global styles={globalStyles}/> */}
-				{/* <Layout> */}
-				<Component {...pageProps} />
-				{/* </Layout> */}
-			</ApolloProvider>
-		</GlobalContext.Provider>
+
+		// <GlobalContext.Provider value={{ isEdit, setIsEdit }}>
+		// 	{/* // 모든 페이지에서 사용할 수 있게끔 <ApolloProvider></ApolloProvider>로 컴포넌트를 감싼다. */}
+		// 	<ApolloProvider client={client}>
+		// 		{/* <Global styles={globalStyles}/> */}
+		// 		{/* <Layout> */}
+		// 		<Component {...pageProps} />
+		// 		{/* </Layout> */}
+		// 	</ApolloProvider>
+		// </GlobalContext.Provider>
 	);
 }
 
