@@ -41,6 +41,7 @@ const ApolloSetting = (props: any) => {
 	const client = new ApolloClient({
 		link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
 		cache: new InMemoryCache(),
+		connectToDevTools: true,
 	});
 
 	return <ApolloProvider client={client}>{props.children}</ApolloProvider>;
