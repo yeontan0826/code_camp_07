@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 // import { ApolloProvider } from "@apollo/client";
 import { AppProps } from "next/app";
-import { initializeApp } from "firebase/app";
+// import { initializeApp } from "firebase/app";
 import { RecoilRoot } from "recoil";
 import ApolloSetting from "../src/components/commons/apollo";
 // import { useState } from "react";
@@ -11,17 +11,17 @@ import ApolloSetting from "../src/components/commons/apollo";
 // import { globalStyles } from "../src/quiz/onetwothree/commons/styles/globalStyles";
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-	apiKey: "AIzaSyCl7_vFOAPIIc6Ga4mRhzAbn5m5UXi58DU",
-	authDomain: "test-project-afc78.firebaseapp.com",
-	projectId: "test-project-afc78",
-	storageBucket: "test-project-afc78.appspot.com",
-	messagingSenderId: "597545641581",
-	appId: "1:597545641581:web:84708c55d3f1bbf782c164",
-};
+// const firebaseConfig = {
+// 	apiKey: "AIzaSyCl7_vFOAPIIc6Ga4mRhzAbn5m5UXi58DU",
+// 	authDomain: "test-project-afc78.firebaseapp.com",
+// 	projectId: "test-project-afc78",
+// 	storageBucket: "test-project-afc78.appspot.com",
+// 	messagingSenderId: "597545641581",
+// 	appId: "1:597545641581:web:84708c55d3f1bbf782c164",
+// };
 
 // Initialize Firebase
-export const firebaseApp = initializeApp(firebaseConfig);
+// export const firebaseApp = initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
