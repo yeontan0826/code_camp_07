@@ -6,13 +6,15 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"generate": "graphql-codegen"
 	},
 	"dependencies": {
 		"@ant-design/icons": "^4.7.0",
 		"@apollo/client": "^3.6.2",
 		"@emotion/react": "^11.9.0",
 		"@emotion/styled": "^11.8.1",
+		"@graphql-codegen/cli": "^2.6.2",
 		"@hookform/resolvers": "^2.9.0",
 		"@mui/material": "^5.6.4",
 		"antd": "^4.20.6",
@@ -21,6 +23,7 @@
 		"dompurify": "^2.3.8",
 		"firebase": "^9.8.2",
 		"graphql": "^16.4.0",
+		"graphql-request": "^4.3.0",
 		"lodash": "^4.17.21",
 		"next": "12.1.0",
 		"react": "^17.0.2",
@@ -37,6 +40,7 @@
 		"yup": "^0.32.11"
 	},
 	"devDependencies": {
+		"@graphql-codegen/typescript": "^2.5.1",
 		"@types/apollo-upload-client": "^17.0.0",
 		"@types/dompurify": "^2.3.3",
 		"@types/lodash": "^4.14.182",
