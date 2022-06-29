@@ -1,13 +1,15 @@
 import { ApolloClient, ApolloLink, ApolloProvider, gql, InMemoryCache } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/store";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
+import { accessTokenState, isLoadedState, restoreAccessTokenLoadable } from "../../../commons/store";
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 
 const ApolloSetting = (props: any) => {
 	const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+	const [isLoaded, setIsLoaded] = useRecoilState(isLoadedState);
+	const aaa = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
 	// 1. 프리렌더링 예제 - process.browser 방법
 	// if (process.browser) {
@@ -37,7 +39,17 @@ const ApolloSetting = (props: any) => {
 
 		// 2. 새로운 방식
 		// 파일을 분리하여 토큰을 새로 가져옴 & 쿠키 스토리지
-		getAccessToken().then((newAccessToken) => {
+		// getAccessToken().then((newAccessToken) => {
+		// 	setAccessToken(newAccessToken);
+		// });
+
+		// 해결방법 1번째 - restoreAccessToken을 두번 요청하기
+		// getAccessToken().then((newAccessToken) => {
+		// 	setAccessToken(newAccessToken);
+		// });
+
+		// 해결방법 3번째 - recoil,selector활영하기
+		aaa.toPromise().then((newAccessToken) => {
 			setAccessToken(newAccessToken);
 		});
 	}, []);
